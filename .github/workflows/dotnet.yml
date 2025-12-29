@@ -1,4 +1,4 @@
-name: Deploy .NET 9 App to Elastic Beanstalk
+name: .Net
 
 on:
   push:
