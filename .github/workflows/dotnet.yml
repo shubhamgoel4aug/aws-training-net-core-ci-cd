@@ -1,23 +1,41 @@
-name: .NET
+name: Deploy .NET 9 App to Elastic Beanstalk
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "main" ]   # triggers when code is pushed to main branch
 
 jobs:
-  build:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 9 SDK
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: "9.0.x"
+
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+
+    - name: Publish .NET 9 App (linux-x64)
+      run: dotnet publish -c Release -f net9.0 -r linux-x64 --self-contained false -o ./publish
+
+    - name: Create deployment ZIP
+      run: |
+        cd publish
+        zip -r ../deploy.zip .
+        cd ..
+
+    - name: Deploy to Elastic Beanstalk
+      uses: einaregilsson/beanstalk-deploy@v21
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: ${{ secrets.EB_APPLICATION }}
+        environment_name: ${{ secrets.EB_ENVIRONMENT }}
+        version_label: v-${{ github.run_number }}
+        region: ${{ secrets.AWS_REGION }}
+        deployment_package: deploy.zip
