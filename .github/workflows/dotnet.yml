@@ -2,8 +2,7 @@ name: .Net
 
 on:
   push:
-    branches: [ "main" ]
-  workflow_dispatch: 
+    branches: [ "main", "ci-cd" ]
 
 jobs:
   build-and-deploy:
