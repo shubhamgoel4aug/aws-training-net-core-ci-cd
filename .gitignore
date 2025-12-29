@@ -1,0 +1,91 @@
+# .NET / Visual Studio
+
+# Visual Studio cache
+.vs/
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+
+# Rider / JetBrains
+.idea/
+*.DotSettings.user
+
+# VS Code local history/settings (keep tasks/settings if desired)
+.history/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.rsuser
+*.sln.docstates
+*.userprefs
+
+# NuGet
+*.nupkg
+**/packages/*
+!**/packages/build/
+# NuGet v3 generated files
+*.nuget.g.props
+*.nuget.g.targets
+*.nuget.dgspec.json
+project.lock.json
+project.assets.json
+
+# MSBuild / Roslyn generated
+*.GeneratedMSBuildEditorConfig.editorconfig
+*.*.AssemblyInfo.cs
+*.*.GlobalUsings.g.cs
+*.*.MvcApplicationPartsAssemblyInfo.cs
+
+# Static web assets
+staticwebassets/
+staticwebassets.build.json
+staticwebassets.build.endpoints.json
+staticwebassets.references.upToDateCheck.txt
+staticwebassets.removed.txt
+**/*.staticwebassets.endpoints.json
+
+# Publish artifacts (typically re-generated)
+**/publish/
+*.deps.json
+*.runtimeconfig.json
+
+# Test results / coverage
+[Tt]est[Rr]esult*/
+[Tt]est[Rr]esults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Logs
+*.log
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# TFS
+$tf/
+
+# Misc
+*.dbmdl
+*.pfx
+*.snk
+
+# Azure publish profiles (user-specific)
+Properties/PublishProfiles/*.user
+
+# Project-specific build stamp files
+**/AWSTrain.*.Up2Date
+
+# Keep solution and settings files committed
+# (e.g., .sln or .slnx should not be ignored)
