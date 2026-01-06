@@ -20,27 +20,7 @@ app.UseHttpsRedirection();
 
 app.MapGet("/api/user/data", async () =>
     {
-        string? connectionString = builder.Configuration.GetConnectionString("Default");
-        await using var conn = new NpgsqlConnection(connectionString);
-        await conn.OpenAsync();
-        const string sql = @"SELECT id, username FROM public.users;";
-        await using var cmd = new NpgsqlCommand(sql, conn);
-        await using var reader = await cmd.ExecuteReaderAsync();
-
-        var rows = new List<Dictionary<string, object?>>();
-        while (await reader.ReadAsync())
-        {
-            var row = new Dictionary<string, object?>(reader.FieldCount);
-            for (int i = 0; i < reader.FieldCount; i++)
-            {
-                var name = reader.GetName(i);
-                var value = await reader.IsDBNullAsync(i) ? null : reader.GetValue(i);
-                row[name] = value;
-            }
-            rows.Add(row);
-        }
-
-        return Results.Ok(rows);
+        return Results.Ok("Hello World");
     }
 ).WithName("GetUsers")
 .Produces(StatusCodes.Status200OK)
