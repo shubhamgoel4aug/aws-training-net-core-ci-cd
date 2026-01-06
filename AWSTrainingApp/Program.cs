@@ -20,7 +20,7 @@ app.UseHttpsRedirection();
 
 app.MapGet("/api/user/data", async () =>
     {
-        return Results.Ok("Hello World");
+        return Results.Ok("Respone: API Endpoint -> API / User / Data");
     }
 ).WithName("GetUsers")
 .Produces(StatusCodes.Status200OK)
